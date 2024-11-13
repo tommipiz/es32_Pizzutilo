@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+$invii = $_SESSION['invii'] ?? 0;
+$voti = $_SESSION['voti'] ?? [];
+$ultimaData = $_SESSION['ultima_data'] ?? "";
+
+$mediaVoti = !empty($voti) ? array_sum($voti) / count($voti) : 0;
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -13,7 +23,7 @@
             <th>Ultima Data</th>
         </tr>
         <tr>
-            <td><?= $invii ?></td>
+            <td><?= htmlspecialchars($invii) ?></td>
             <td><?= htmlspecialchars($ultimaData) ?></td>
         </tr>
     </table>
@@ -29,16 +39,5 @@
     
     <br>
     <a href="presentazione.html">Torna alla pagina di inserimento</a>
-
-    <?php
-        session_start();
-
-        $invii = $_SESSION['invii'] ?? 0;
-        $voti = $_SESSION['voti'] ?? [];
-        $ultimaData = $_SESSION['ultima_data'] ?? "";
-
-        $mediaVoti = $voti ? array_sum($voti) / count($voti) : 0;
-    ?>
 </body>
 </html>
-
